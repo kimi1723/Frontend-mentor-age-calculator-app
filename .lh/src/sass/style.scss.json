@@ -1,0 +1,42 @@
+{
+    "sourceFile": "src/sass/style.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1680546215720,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1680546300834,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,4 @@\n-.attribution { font-size: 11px; text-align: center; }\r\n-    .attribution a { color: hsl(228, 45%, 44%); }\n\\ No newline at end of file\n+/\r\n+body {\r\n+    background-color: #fff;\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1680546329195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,7 @@\n-/\r\n-body {\r\n-    background-color: #fff;\r\n-}\n\\ No newline at end of file\n+.attribution {\r\n+\tfont-size: 11px;\r\n+\ttext-align: center;\r\n+}\r\n+.attribution a {\r\n+\tcolor: hsl(228, 45%, 44%);\r\n+}\r\n"
+                },
+                {
+                    "date": 1680553518664,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,5 @@\n-.attribution {\r\n-\tfont-size: 11px;\r\n-\ttext-align: center;\r\n+\r\n+\r\n+body {\r\n+\tbackground-color: #0f0;\r\n }\r\n-.attribution a {\r\n-\tcolor: hsl(228, 45%, 44%);\r\n-}\r\n"
+                },
+                {
+                    "date": 1680553533941,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +0,0 @@\n-\r\n-\r\n-body {\r\n-\tbackground-color: #0f0;\r\n-}\r\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1680553724830,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-\n+@use './general';\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1680553731441,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,2 @@\n @use './general';\r\n-@use\n\\ No newline at end of file\n+// @use './footer';\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1680546215720,
+            "name": "Commit-0",
+            "content": ".attribution { font-size: 11px; text-align: center; }\r\n    .attribution a { color: hsl(228, 45%, 44%); }"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/ts/app.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1680546357251,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1680546362789,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-clg\r\n+console.log('abcd');\r\n"
+                }
+            ],
+            "date": 1680546357251,
+            "name": "Commit-0",
+            "content": "clg\r\n"
+        }
+    ]
+}

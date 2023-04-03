@@ -1,0 +1,118 @@
+{
+    "sourceFile": "index.html",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 25,
+            "patches": [
+                {
+                    "date": 1680546215189,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1680546226361,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,19 +1,19 @@\n <!DOCTYPE html>\n <html lang=\"en\">\n+\n <head>\n   <meta charset=\"UTF-8\">\n-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <!-- displays site properly based on user's device -->\n+  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n \n+\n   <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"./assets/images/favicon-32x32.png\">\n \n   <title>Frontend Mentor | Age calculator app</title>\n \n-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->\n-  <style>\n \n-  </style>\n </head>\n+\n <body>\n \n   Day\n   DD\n@@ -32,5 +32,6 @@\n     Challenge by <a href=\"https://www.frontendmentor.io?ref=challenge\" target=\"_blank\">Frontend Mentor</a>.\n     Coded by <a href=\"#\">Your Name Here</a>.\n   </div>\n </body>\n+\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1680546232130,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,15 +3,11 @@\n \n <head>\n   <meta charset=\"UTF-8\">\n   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n-\n-\n   <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"./assets/images/favicon-32x32.png\">\n \n   <title>Frontend Mentor | Age calculator app</title>\n-\n-\n </head>\n \n <body>\n \n"
+                },
+                {
+                    "date": 1680546237652,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,11 +23,11 @@\n   -- years\n   -- months\n   -- days\n \n-  <div class=\"attribution\">\n+  <!-- <div class=\"attribution\">\n     Challenge by <a href=\"https://www.frontendmentor.io?ref=challenge\" target=\"_blank\">Frontend Mentor</a>.\n     Coded by <a href=\"#\">Your Name Here</a>.\n-  </div>\n+  </div> -->\n </body>\n \n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1680546282909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n   <meta charset=\"UTF-8\">\n   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n   <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"./assets/images/favicon-32x32.png\">\n \n-  <title>Frontend Mentor | Age calculator app</title>\n+  <title>Frontend Mentor | Age calculator app by Patryk Sąsiadek</title>\n </head>\n \n <body>\n \n"
+                },
+                {
+                    "date": 1680546310980,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n   <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"./assets/images/favicon-32x32.png\">\n \n   <title>Frontend Mentor | Age calculator app by Patryk Sąsiadek</title>\n+  <link rel=\"stylesheet\" href=\"/\">\n </head>\n \n <body>\n \n"
+                },
+                {
+                    "date": 1680546342470,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n   <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"./assets/images/favicon-32x32.png\">\n \n   <title>Frontend Mentor | Age calculator app by Patryk Sąsiadek</title>\n-  <link rel=\"stylesheet\" href=\"/\">\n+  <link rel=\"stylesheet\" href=\"./dist/css/style.min.css\">\n </head>\n \n <body>\n \n@@ -28,7 +28,8 @@\n   <!-- <div class=\"attribution\">\n     Challenge by <a href=\"https://www.frontendmentor.io?ref=challenge\" target=\"_blank\">Frontend Mentor</a>.\n     Coded by <a href=\"#\">Your Name Here</a>.\n   </div> -->\n+  script\n </body>\n \n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1680546347574,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,8 @@\n   <!-- <div class=\"attribution\">\n     Challenge by <a href=\"https://www.frontendmentor.io?ref=challenge\" target=\"_blank\">Frontend Mentor</a>.\n     Coded by <a href=\"#\">Your Name Here</a>.\n   </div> -->\n-  script\n+  <script src=\"./dist/js/\"></script>\n </body>\n \n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1680553927543,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n </head>\n \n <body>\n \n-  Day\n+  <!-- Day\n   DD\n \n   Month\n   MM\n@@ -22,14 +22,14 @@\n   YYYY\n \n   -- years\n   -- months\n-  -- days\n+  -- days -->\n \n   <!-- <div class=\"attribution\">\n     Challenge by <a href=\"https://www.frontendmentor.io?ref=challenge\" target=\"_blank\">Frontend Mentor</a>.\n     Coded by <a href=\"#\">Your Name Here</a>.\n   </div> -->\n-  <script src=\"./dist/js/\"></script>\n+  <script defer src=\"./dist/js/app.min.js\"></script>\n </body>\n \n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1680554033782,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n   <link rel=\"stylesheet\" href=\"./dist/css/style.min.css\">\n </head>\n \n <body>\n-\n+  <main class=\"age-calc\"></main>\n   <!-- Day\n   DD\n \n   Month\n"
+                },
+                {
+                    "date": 1680554040508,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,11 @@\n   <link rel=\"stylesheet\" href=\"./dist/css/style.min.css\">\n </head>\n \n <body>\n-  <main class=\"age-calc\"></main>\n+  <main class=\"age-calc\">\n+    \n+  </main>\n   <!-- Day\n   DD\n \n   Month\n"
+                },
+                {
+                    "date": 1680554237633,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,10 @@\n   <link rel=\"stylesheet\" href=\"./dist/css/style.min.css\">\n </head>\n \n <body>\n-  <main class=\"age-calc\">\n-    \n+  <main class=\"main\">\n+\n   </main>\n   <!-- Day\n   DD\n \n"
+                },
+                {
+                    "date": 1680554247275,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,10 @@\n   <link rel=\"stylesheet\" href=\"./dist/css/style.min.css\">\n </head>\n \n <body>\n-  <main class=\"main\">\n-\n+  <main class=\"age-calc\">\n+    <form action=\"\" class=\"age-calc-form\"></form>\n   </main>\n   <!-- Day\n   DD\n \n"
+                },
+                {
+                    "date": 1680554294148,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,11 @@\n </head>\n \n <body>\n   <main class=\"age-calc\">\n-    <form action=\"\" class=\"age-calc-form\"></form>\n+    <form class=\"age-calc-form\">\n+      \n+    </form>\n   </main>\n   <!-- Day\n   DD\n \n"
+                },
+                {
+                    "date": 1680554319827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n \n <body>\n   <main class=\"age-calc\">\n     <form class=\"age-calc-form\">\n-      \n+      <input type=\"number\" class=\"age-calc-form__input\">\n     </form>\n   </main>\n   <!-- Day\n   DD\n"
+                },
+                {
+                    "date": 1680554444144,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n \n <body>\n   <main class=\"age-calc\">\n     <form class=\"age-calc-form\">\n-      <input type=\"number\" class=\"age-calc-form__input\">\n+      <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--\">\n     </form>\n   </main>\n   <!-- Day\n   DD\n"
+                },
+                {
+                    "date": 1680554452500,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,10 @@\n <body>\n   <main class=\"age-calc\">\n     <form class=\"age-calc-form\">\n       <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--\">\n+      <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--\">\n+      <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--\">\n     </form>\n   </main>\n   <!-- Day\n   DD\n"
+                },
+                {
+                    "date": 1680554459103,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,11 +12,11 @@\n \n <body>\n   <main class=\"age-calc\">\n     <form class=\"age-calc-form\">\n-      <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--\">\n-      <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--\">\n-      <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--\">\n+      <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--day\">\n+      <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--month\">\n+      <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--year\">\n     </form>\n   </main>\n   <!-- Day\n   DD\n"
+                },
+                {
+                    "date": 1680554466745,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,10 @@\n     <form class=\"age-calc-form\">\n       <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--day\">\n       <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--month\">\n       <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--year\">\n+\n+      <button></button>\n     </form>\n   </main>\n   <!-- Day\n   DD\n"
+                },
+                {
+                    "date": 1680554474293,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n       <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--day\">\n       <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--month\">\n       <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--year\">\n \n-      <button></button>\n+      <button type=\"submit\" class=\"\"></button>\n     </form>\n   </main>\n   <!-- Day\n   DD\n"
+                },
+                {
+                    "date": 1680554587476,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n       <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--day\">\n       <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--month\">\n       <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--year\">\n \n-      <button type=\"submit\" class=\"\"></button>\n+      <button type=\"submit\" class=\"age-calc-form__\"></button>\n     </form>\n   </main>\n   <!-- Day\n   DD\n"
+                },
+                {
+                    "date": 1680554621963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,10 +16,12 @@\n       <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--day\">\n       <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--month\">\n       <input type=\"number\" class=\"age-calc-form__input age-calc-form__input--year\">\n \n-      <button type=\"submit\" class=\"age-calc-form__\"></button>\n+      <button type=\"submit\" class=\"age-calc-form__submit-btn\"></button>\n     </form>\n+\n+    .age-calc\n   </main>\n   <!-- Day\n   DD\n \n"
+                },
+                {
+                    "date": 1680554644322,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \n       <button type=\"submit\" class=\"age-calc-form__submit-btn\"></button>\n     </form>\n \n-    .age-calc\n+    <div class=\"age-calc-output\"></div>\n   </main>\n   <!-- Day\n   DD\n \n"
+                },
+                {
+                    "date": 1680554693399,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,11 @@\n \n       <button type=\"submit\" class=\"age-calc-form__submit-btn\"></button>\n     </form>\n \n-    <div class=\"age-calc-output\"></div>\n+    <div class=\"age-calc-output\">\n+      \n+    </div>\n   </main>\n   <!-- Day\n   DD\n \n"
+                },
+                {
+                    "date": 1680554703389,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n       <button type=\"submit\" class=\"age-calc-form__submit-btn\"></button>\n     </form>\n \n     <div class=\"age-calc-output\">\n-      <p></p>\n+      <p c></p>\n     </div>\n   </main>\n   <!-- Day\n   DD\n"
+                },
+                {
+                    "date": 1680555650805,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,18 +14,25 @@\n   <main class=\"age-calc\">\n     <form class=\"age-calc-form\">\n       <label for=\"days\" class=\"age-calc-form__label\">Day</label>\n       <input id=\"days\" type=\"number\" class=\"age-calc-form__input age-calc-form__input--days\">\n+\n+      <label for=\"days\" class=\"age-calc-form__label\">Day</label>\n       <input id=\"months\" type=\"number\" class=\"age-calc-form__input age-calc-form__input--months\">\n+\n+      <label for=\"days\" class=\"age-calc-form__label\">Day</label>\n       <input id=\"years\" type=\"number\" class=\"age-calc-form__input age-calc-form__input--years\">\n \n       <button type=\"submit\" class=\"age-calc-form__submit-btn\"></button>\n     </form>\n \n     <div class=\"age-calc-output\">\n-      <p class=\"age-calc-output__text age-calc-output__text--days\"><span class=\"age-calc-output__text--highlighted\"></span></p>\n-      <p class=\"age-calc-output__text age-calc-output__text--months\"><span class=\"age-calc-output__text--highlighted\"></span></p>\n-      <p class=\"age-calc-output__text age-calc-output__text--years\"><span class=\"age-calc-output__text--highlighted\"></span></p>\n+      <p class=\"age-calc-output__text age-calc-output__text--days\"><span\n+          class=\"age-calc-output__text--highlighted\"></span></p>\n+      <p class=\"age-calc-output__text age-calc-output__text--months\"><span\n+          class=\"age-calc-output__text--highlighted\"></span></p>\n+      <p class=\"age-calc-output__text age-calc-output__text--years\"><span\n+          class=\"age-calc-output__text--highlighted\"></span></p>\n     </div>\n   </main>\n   <!-- Day\n   DD\n"
+                }
+            ],
+            "date": 1680546215189,
+            "name": "Commit-0",
+            "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <!-- displays site properly based on user's device -->\n\n  <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"./assets/images/favicon-32x32.png\">\n\n  <title>Frontend Mentor | Age calculator app</title>\n\n  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->\n  <style>\n\n  </style>\n</head>\n<body>\n\n  Day\n  DD\n\n  Month\n  MM\n\n  Year\n  YYYY\n\n  -- years\n  -- months\n  -- days\n\n  <div class=\"attribution\">\n    Challenge by <a href=\"https://www.frontendmentor.io?ref=challenge\" target=\"_blank\">Frontend Mentor</a>.\n    Coded by <a href=\"#\">Your Name Here</a>.\n  </div>\n</body>\n</html>"
+        }
+    ]
+}

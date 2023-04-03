@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Age calculator app by Patryk Sąsiadek</title>
+  <link rel="stylesheet" href="./dist/css/style.min.css">
+</head>
+
+<body>
+  <main class="age-calc">
+    <form class="age-calc-form">
+      <label for="days" class="age-calc-form__label">Day</label>
+      <input id="days" type="number" class="age-calc-form__input age-calc-form__input--day" placeholder="DD">
+      <p class="age-calc-form__error" data-error-id="day"></p>
+
+      <label for="months" class="age-calc-form__label">Month</label>
+      <input id="months" type="number" class="age-calc-form__input age-calc-form__input--month" placeholder="MM">
+      <p class="age-calc-form__error" data-error-id="month"></p>
+
+      <label for="years" class="age-calc-form__label">Year</label>
+      <input id="years" type="number" class="age-calc-form__input age-calc-form__input--year" placeholder="YYYY">
+      <p class="age-calc-form__error" data-error-id="year"></p>
+
+      <button type="submit" class="age-calc-form__submit-btn"></button>
+    </form>
+
+    <div class="age-calc-output">
+      <p class="age-calc-output__text age-calc-output__text--days"><span
+          class="age-calc-output__text--highlighted"></span></p>
+      <p class="age-calc-output__text age-calc-output__text--months"><span
+          class="age-calc-output__text--highlighted"></span></p>
+      <p class="age-calc-output__text age-calc-output__text--years"><span
+          class="age-calc-output__text--highlighted"></span></p>
+    </div>
+  </main>
+
+
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io/profile/kimi1723" target="_blank" rel="noopener">Frontend
+      Mentor</a>.
+    Coded by <a href="#">Patryk Sąsiadek</a>.
+  </footer>
+  <script defer src="./dist/js/app.min.js"></script>
+</body>
+
+</html>
