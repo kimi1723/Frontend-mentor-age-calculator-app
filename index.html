@@ -7,6 +7,10 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
 
   <title>Frontend Mentor | Age calculator app by Patryk Sąsiadek</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="./dist/css/style.min.css">
 </head>
 
@@ -15,26 +19,27 @@
     <form class="age-calc-form">
       <label for="days" class="age-calc-form__label">Day</label>
       <input id="days" type="number" class="age-calc-form__input age-calc-form__input--day" placeholder="DD">
-      <p class="age-calc-form__error" data-error-id="day"></p>
+      <p class="age-calc-form__error" data-error-id="day">must be a valid date!</p>
 
       <label for="months" class="age-calc-form__label">Month</label>
       <input id="months" type="number" class="age-calc-form__input age-calc-form__input--month" placeholder="MM">
-      <p class="age-calc-form__error" data-error-id="month"></p>
+      <p class="age-calc-form__error" data-error-id="month">must be a valid date!</p>
 
       <label for="years" class="age-calc-form__label">Year</label>
       <input id="years" type="number" class="age-calc-form__input age-calc-form__input--year" placeholder="YYYY">
-      <p class="age-calc-form__error" data-error-id="year"></p>
+      <p class="age-calc-form__error age-calc-form__error--active" data-error-id="year">must be a valid date!</p>
 
-      <button type="submit" class="age-calc-form__submit-btn"></button>
+      <button type="submit" class="age-calc-form__submit-btn"><img src="./assets/images/icon-arrow.svg" alt=""
+          class="age-calc-form__submit-btn-img"></button>
     </form>
 
     <div class="age-calc-output">
       <p class="age-calc-output__text age-calc-output__text--days"><span
-          class="age-calc-output__text--highlighted"></span></p>
+          class="age-calc-output__text--highlighted">38</span> month</p>
       <p class="age-calc-output__text age-calc-output__text--months"><span
-          class="age-calc-output__text--highlighted"></span></p>
+          class="age-calc-output__text--highlighted">3</span> month</p>
       <p class="age-calc-output__text age-calc-output__text--years"><span
-          class="age-calc-output__text--highlighted"></span></p>
+          class="age-calc-output__text--highlighted">27</span> month</p>
     </div>
   </main>
 

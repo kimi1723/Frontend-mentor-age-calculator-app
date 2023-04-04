@@ -1,0 +1,134 @@
+@use './colors' as c;
+
+.age-calc {
+	aspect-ratio: 1 / 1.2;
+	padding: 3em 1.5em;
+	border-radius: 25px;
+	border-bottom-right-radius: 30%;
+	background-color: c.$white;
+	max-width: 420px;
+}
+
+.age-calc-form {
+	position: relative;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(3, min-content);
+	gap: 1em;
+	padding-bottom: 3em;
+	border-bottom: 1px solid c.$light-grey;
+
+	&__label,
+	&__input,
+	&__error {
+		&:first-of-type {
+			grid-column: 1 / 2;
+		}
+
+		&:nth-of-type(2) {
+			grid-column: 2 / 3;
+		}
+
+		&:nth-of-type(3) {
+			grid-column: 3 / 4;
+		}
+	}
+
+	&__label {
+		grid-row: 1 / 2;
+		font-size: 1.4rem;
+		text-transform: uppercase;
+		color: c.$smokey-grey;
+		transition: color 0.3s;
+	}
+
+	&__input {
+		appearance: textfield;
+		grid-row: 2 / 3;
+		padding: 0.4em;
+		width: 100%;
+		font-size: 1.6rem;
+		font-weight: bold;
+		color: c.$off-black;
+		background-color: transparent;
+		border: 1px solid c.$light-grey;
+		border-radius: 5px;
+		outline: none;
+		transition: border 0.3s;
+		cursor: pointer;
+
+		&:hover,
+		&:focus {
+			border: 1px solid c.$highlighted;
+		}
+	}
+
+	&__error {
+		opacity: 0;
+		grid-row: 3 / 4;
+		font-size: 1.1rem;
+		text-align: center;
+		color: c.$error;
+		visibility: hidden;
+
+		&--active {
+			opacity: 1;
+		}
+
+		&--active-visibility {
+			visibility: visible;
+		}
+	}
+
+	&__submit-btn {
+		aspect-ratio: 1 / 1;
+		position: absolute;
+		top: 100%;
+		left: 50%;
+		width: 50px;
+		background-color: c.$highlighted;
+		border: none;
+		border-radius: 50%;
+		outline: none;
+		transform: translate(-50%, -50%);
+		transition: background-color 0.3s;
+		cursor: pointer;
+
+		&:hover,
+		&:focus {
+			background-color: c.$off-black;
+		}
+	}
+
+	&__submit-btn-img {
+		transform: scale(0.5);
+	}
+
+	&--error {
+		.age-calc-form {
+			&__label {
+				color: c.$error;
+			}
+
+			&__input {
+				border: 1px solid c.$error;
+			}
+		}
+	}
+}
+
+.age-calc-output {
+	display: flex;
+	flex-direction: column;
+	margin-top: 1em;
+	font-size: 4rem;
+
+	&__text {
+		font-weight: bolder;
+		font-style: italic;
+
+		&--highlighted {
+			color: c.$highlighted;
+		}
+	}
+}

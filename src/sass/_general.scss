@@ -1,3 +1,5 @@
+@use './colors' as c;
+
 *,
 *::before,
 *::after {
@@ -8,4 +10,11 @@
 
 html {
 	font-size: 62.5%;
+}
+
+body {
+	padding: 5em 1.5em 0;
+	min-height: 100vh;
+	font-family: 'Poppins', sans-serif;
+	background-color: c.$off-white;
 }

@@ -1,0 +1,58 @@
+{
+    "sourceFile": "src/sass/_colors.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 10,
+            "patches": [
+                {
+                    "date": 1680557235626,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1680557250239,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,5 +8,7 @@\n // - White: hsl(0, 0%, 100%)\r\n // - Off white: hsl(0, 0%, 94%)\r\n // - Light grey: hsl(0, 0%, 86%)\r\n // - Smokey grey: hsl(0, 1%, 44%)\r\n-// - Off black: hsl(0, 0%, 8%)\n\\ No newline at end of file\n+// - Off black: hsl(0, 0%, 8%)\r\n+// Primary\r\n+$purp\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1680557258014,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,5 +10,5 @@\n // - Light grey: hsl(0, 0%, 86%)\r\n // - Smokey grey: hsl(0, 1%, 44%)\r\n // - Off black: hsl(0, 0%, 8%)\r\n // Primary\r\n-$purp\n\\ No newline at end of file\n+$highlighted: hsl()\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1680557287191,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,5 +10,5 @@\n // - Light grey: hsl(0, 0%, 86%)\r\n // - Smokey grey: hsl(0, 1%, 44%)\r\n // - Off black: hsl(0, 0%, 8%)\r\n // Primary\r\n-$highlighted: hsl()\n\\ No newline at end of file\n+$highlighted: hsl(259,100%,65%);\r\n"
+                },
+                {
+                    "date": 1680557298303,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,4 +11,5 @@\n // - Smokey grey: hsl(0, 1%, 44%)\r\n // - Off black: hsl(0, 0%, 8%)\r\n // Primary\r\n $highlighted: hsl(259,100%,65%);\r\n+$error: hsl(0,100%,67%);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1680557304728,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,5 +11,12 @@\n // - Smokey grey: hsl(0, 1%, 44%)\r\n // - Off black: hsl(0, 0%, 8%)\r\n // Primary\r\n $highlighted: hsl(259,100%,65%);\r\n-$error: hsl(0,100%,67%);\n\\ No newline at end of file\n+$error: hsl(0,100%,67%);\r\n+\r\n+// Neutral\r\n+// - White: hsl(0, 0%, 100%)\r\n+// - Off white: hsl(0, 0%, 94%)\r\n+// - Light grey: hsl(0, 0%, 86%)\r\n+// - Smokey grey: hsl(0, 1%, 44%)\r\n+// - Off black: hsl(0, 0%, 8%)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1680557311811,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n $highlighted: hsl(259,100%,65%);\r\n $error: hsl(0,100%,67%);\r\n \r\n // Neutral\r\n-// - White: hsl(0, 0%, 100%)\r\n-// - Off white: hsl(0, 0%, 94%)\r\n-// - Light grey: hsl(0, 0%, 86%)\r\n-// - Smokey grey: hsl(0, 1%, 44%)\r\n-// - Off black: hsl(0, 0%, 8%)\n\\ No newline at end of file\n+$white: hsl(0, 0%, 100%);\r\n+// - Off white: hsl(0, 0%, 94%);\r\n+// - Light grey: hsl(0, 0%, 86%);\r\n+// - Smokey grey: hsl(0, 1%, 44%);\r\n+// - Off black: hsl(0, 0%, 8%);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1680557318832,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,8 @@\n $error: hsl(0,100%,67%);\r\n \r\n // Neutral\r\n $white: hsl(0, 0%, 100%);\r\n-// - Off white: hsl(0, 0%, 94%);\r\n-// - Light grey: hsl(0, 0%, 86%);\r\n+$off-white: hsl(0, 0%, 94%);\r\n+$Light grey: hsl(0, 0%, 86%);\r\n // - Smokey grey: hsl(0, 1%, 44%);\r\n // - Off black: hsl(0, 0%, 8%);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1680557344773,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,7 +16,7 @@\n \r\n // Neutral\r\n $white: hsl(0, 0%, 100%);\r\n $off-white: hsl(0, 0%, 94%);\r\n-$Light grey: hsl(0, 0%, 86%);\r\n+$light-grey: hsl(0, 0%, 86%);\r\n // - Smokey grey: hsl(0, 1%, 44%);\r\n // - Off black: hsl(0, 0%, 8%);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1680557350415,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,6 +17,6 @@\n // Neutral\r\n $white: hsl(0, 0%, 100%);\r\n $off-white: hsl(0, 0%, 94%);\r\n $light-grey: hsl(0, 0%, 86%);\r\n-// - Smokey grey: hsl(0, 1%, 44%);\r\n+$smokey-grey: hsl(0, 1%, 44%);\r\n // - Off black: hsl(0, 0%, 8%);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1680560107277,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,5 @@\n-// ### Primary\r\n \r\n-// - Purple: hsl(259, 100%, 65%)\r\n-// - Light red: hsl(0, 100%, 67%)\r\n-\r\n-// ### Neutral\r\n-\r\n-// - White: hsl(0, 0%, 100%)\r\n-// - Off white: hsl(0, 0%, 94%)\r\n-// - Light grey: hsl(0, 0%, 86%)\r\n-// - Smokey grey: hsl(0, 1%, 44%)\r\n-// - Off black: hsl(0, 0%, 8%)\r\n // Primary\r\n $highlighted: hsl(259,100%,65%);\r\n $error: hsl(0,100%,67%);\r\n \r\n"
+                }
+            ],
+            "date": 1680557235626,
+            "name": "Commit-0",
+            "content": "// ### Primary\r\n\r\n// - Purple: hsl(259, 100%, 65%)\r\n// - Light red: hsl(0, 100%, 67%)\r\n\r\n// ### Neutral\r\n\r\n// - White: hsl(0, 0%, 100%)\r\n// - Off white: hsl(0, 0%, 94%)\r\n// - Light grey: hsl(0, 0%, 86%)\r\n// - Smokey grey: hsl(0, 1%, 44%)\r\n// - Off black: hsl(0, 0%, 8%)"
+        }
+    ]
+}

@@ -3,11 +3,23 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1680553519909,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1680558641710,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n-// .attribution {\r\n-// \tfont-size: 11px;\r\n-// \ttext-align: center;\r\n-// }\r\n-// .attribution a {\r\n-// \tcolor: hsl(228, 45%, 44%);\r\n-// }\n\\ No newline at end of file\n+.attribution {\r\n+    position: absolute;\r\n+\tfont-size: 11px;\r\n+\ttext-align: center;\r\n+}\r\n+.attribution a {\r\n+\tcolor: hsl(228, 45%, 44%);\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1680558649007,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n .attribution {\r\n \t// position: absolute;\r\n-\tpadding: ;\r\n+    position: relative;\r\n \tfont-size: 11px;\r\n \ttext-align: center;\r\n }\r\n .attribution a {\r\n"
+                },
+                {
+                    "date": 1680558656723,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n .attribution {\r\n \t// position: absolute;\r\n \tposition: relative;\r\n \tbottom: 0;\r\n+    left: 0;\r\n \tfont-size: 11px;\r\n \ttext-align: center;\r\n }\r\n .attribution a {\r\n"
                 }
             ],
             "date": 1680553519909,
