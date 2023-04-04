@@ -4,7 +4,8 @@
 	aspect-ratio: 1 / 1.2;
 	margin-top: 10vh;
 	padding: 3em 1.5em;
-	max-width: 420px;
+	width: 100%;
+	max-width: 450px;
 	border-radius: 25px;
 	border-bottom-right-radius: 30%;
 	background-color: c.$white;
@@ -15,7 +16,7 @@
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(3, min-content);
-	gap: 1em;
+	column-gap: 1em;
 	padding-bottom: 3em;
 	border-bottom: 1px solid c.$light-grey;
 
@@ -37,7 +38,8 @@
 
 	&__label {
 		grid-row: 1 / 2;
-		font-size: 1.4rem;
+		margin-bottom: 0.3em;
+		font-size: clamp(1.4rem, -0.875rem + 4.333vw, 1.6rem);
 		text-transform: uppercase;
 		color: c.$smokey-grey;
 		transition: color 0.3s;
@@ -48,7 +50,7 @@
 		grid-row: 2 / 3;
 		padding: 0.4em;
 		width: 100%;
-		font-size: 1.6rem;
+		font-size: clamp(1.6rem, -0.875rem + 4.333vw, 3.2rem);
 		font-weight: bold;
 		color: c.$off-black;
 		background-color: transparent;
@@ -69,7 +71,7 @@
 		opacity: 0;
 		grid-row: 3 / 4;
 		font-size: 1.1rem;
-		text-align: center;
+		font-style: italic;
 		color: c.$error;
 		visibility: hidden;
 
@@ -123,7 +125,7 @@
 	display: flex;
 	flex-direction: column;
 	margin-top: 1em;
-	font-size: 4rem;
+	font-size: clamp(4rem, -0.875rem + 8.333vw, 8rem);
 
 	&__text {
 		font-weight: bolder;
@@ -132,5 +134,32 @@
 		&--highlighted {
 			color: c.$highlighted;
 		}
+	}
+}
+
+@media (min-width: 768px) {
+	.age-calc {
+		aspect-ratio: 1 / 0.9;
+		padding: 4em;
+		max-width: 700px;
+	}
+
+	.age-calc-form {
+		grid-template-columns: repeat(4, 1fr);
+		column-gap: 3em;
+
+		&__submit-btn {
+			left: 100%;
+			width: 75px;
+			transform: translate(-100%, -50%);
+		}
+
+		&__submit-btn-img {
+			transform: scale(0.8);
+		}
+	}
+
+	.age-calc-output {
+		margin-top: 0.5em;
 	}
 }

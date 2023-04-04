@@ -1,9 +1,6 @@
 .attribution {
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 1.5em;
-	font-size: 1.1rem;
+	font-size: clamp(1.1rem, -0.875rem + 2.333vw, 1.6rem);
+	margin-top: 3em;
 	text-align: center;
 }
 
