@@ -1,3 +1,4 @@
+const ageCalcForm = document.querySelector('.age-calc-form') as HTMLDivElement;
 // const ageCalcLabels = document.querySelectorAll('.age-calc-form__label') as NodeListOf<HTMLLabelElement>;
 
 // const ageCalcDayInput = document.querySelector('.age-calc-form__input[data-id="day"]') as HTMLInputElement;
@@ -8,23 +9,23 @@ const ageCalcErrorParagraphs = document.querySelectorAll('.age-calc-form__error'
 
 const ageCalcSubmitBtn = document.querySelector('.age-calc-form__submit-btn') as HTMLButtonElement;
 
-const currentYear = new Date().getFullYear();
+const currentYear: number = new Date().getFullYear();
 
 const calcAge = async (e: Event) => {
 	e.preventDefault();
 
-	const validation = await validateForm();
+	const validation: boolean = await validateForm();
 	if (validation === false) return;
 };
 
 const validateForm = async () => {
 	if (checkIfEmpty() === false) return false;
 
-	const timeout = () => {
+	const timeout = (): Promise<void> => {
 		return new Promise(resolve => setTimeout(resolve, 300));
 	};
 
-	const validateValues = async () => {
+	const validateValues = async (): Promise<boolean> => {
 		await timeout();
 
 		return checkIfAccurateValues();
@@ -46,17 +47,11 @@ const checkIfEmpty = (): boolean => {
 		}
 	});
 
-	emptyInputs.forEach(input => {
-		const errorToDisplay = document.querySelector(
-			`.age-calc-form__error[data-error-id="${input}"]`,
-		) as HTMLParagraphElement;
-
-		errorToDisplay.textContent = 'This field is required';
-		errorToDisplay.classList.add('age-calc-form__error--active');
-		errorToDisplay.classList.add('age-calc-form__error--active-visibility');
-	});
-
 	filledInputs.forEach(input => removeError(input));
+
+	emptyInputs.forEach(input => {
+		addError(input, 'empty');
+	});
 
 	return emptyInputs.length === 0 ? true : false;
 };
@@ -78,7 +73,7 @@ const checkIfAccurateValues = (): boolean => {
 				day = Number(input.value);
 
 				if (day <= 0) {
-					addError('day');
+					addError('day', 'notValidated');
 				}
 
 				break;
@@ -86,26 +81,26 @@ const checkIfAccurateValues = (): boolean => {
 				month = Number(input.value);
 
 				if (month > 12 || month <= 0) {
-					addError('day');
-					addError('month');
+					addError('day', 'notValidated');
+					addError('month', 'notValidated');
 					return;
 				} else if (month === 2) {
 					if (day > 28) {
-						addError('day');
+						addError('day', 'notValidated');
 						return;
 					}
 
 					removeError('day');
 				} else if (monthsWith31Days.includes(month)) {
 					if (day > 31) {
-						addError('day');
+						addError('day', 'notValidated');
 						return;
 					}
 
 					removeError('day');
 				} else if (month !== 2) {
 					if (day > 30) {
-						addError('day');
+						addError('day', 'notValidated');
 						return;
 					}
 
@@ -118,7 +113,7 @@ const checkIfAccurateValues = (): boolean => {
 				const year = Number(input.value);
 
 				if (year >= currentYear) {
-					addError('year');
+					addError('year', 'notValidated');
 				} else {
 					removeError('year');
 				}
@@ -150,6 +145,7 @@ const removeError = (timePeriod: string) => {
 	) as HTMLParagraphElement;
 
 	errorToRemove.classList.remove('age-calc-form__error--active');
+	ageCalcForm.classList.remove('age-calc-form--error');
 
 	setTimeout(() => {
 		errorToRemove.textContent = '';
@@ -157,24 +153,27 @@ const removeError = (timePeriod: string) => {
 	}, 300);
 };
 
-const addError = (timePeriod: string) => {
-	const ageCalcForm = document.querySelector('.age-calc-form') as HTMLDivElement;
+const addError = (timePeriod: string, id: string) => {
 	const errorToAdd = document.querySelector(
 		`.age-calc-form__error[data-error-id="${timePeriod}"`,
 	) as HTMLParagraphElement;
 
 	ageCalcForm.classList.add('age-calc-form--error');
 
-	switch (timePeriod) {
-		case 'day':
-			errorToAdd.textContent = 'Must be a valid day';
-			break;
-		case 'month':
-			errorToAdd.textContent = 'Must be a valid month';
-			break;
-		case 'year':
-			errorToAdd.textContent = 'Must be in the past';
-			break;
+	if (id === 'empty') {
+		errorToAdd.textContent = 'This field is required';
+	} else {
+		switch (timePeriod) {
+			case 'day':
+				errorToAdd.textContent = 'Must be a valid day';
+				break;
+			case 'month':
+				errorToAdd.textContent = 'Must be a valid month';
+				break;
+			case 'year':
+				errorToAdd.textContent = 'Must be in the past';
+				break;
+		}
 	}
 
 	errorToAdd.classList.add('age-calc-form__error--active');
