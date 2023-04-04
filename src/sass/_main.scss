@@ -2,11 +2,12 @@
 
 .age-calc {
 	aspect-ratio: 1 / 1.2;
+	margin-top: 10vh;
 	padding: 3em 1.5em;
+	max-width: 420px;
 	border-radius: 25px;
 	border-bottom-right-radius: 30%;
 	background-color: c.$white;
-	max-width: 420px;
 }
 
 .age-calc-form {
@@ -60,6 +61,7 @@
 		&:hover,
 		&:focus {
 			border: 1px solid c.$highlighted;
+			caret-color: c.$highlighted;
 		}
 	}
 
