@@ -1,47 +1,36 @@
-const ageCalcForm = document.querySelector('.age-calc-form') as HTMLDivElement;
-const ageCalcLabels = document.querySelectorAll('.age-calc-form__label') as NodeListOf<HTMLLabelElement>;
+// const ageCalcLabels = document.querySelectorAll('.age-calc-form__label') as NodeListOf<HTMLLabelElement>;
 
-const ageCalcDayInput = document.querySelector('.age-calc-form__input[data-id="day"]') as HTMLInputElement;
-const ageCalcMonthInput = document.querySelector('.age-calc-form__input[data-id="month"]') as HTMLInputElement;
-const ageCalcYearInput = document.querySelector('.age-calc-form__input[data-id="year"]') as HTMLInputElement;
+// const ageCalcDayInput = document.querySelector('.age-calc-form__input[data-id="day"]') as HTMLInputElement;
+// const ageCalcMonthInput = document.querySelector('.age-calc-form__input[data-id="month"]') as HTMLInputElement;
+// const ageCalcYearInput = document.querySelector('.age-calc-form__input[data-id="year"]') as HTMLInputElement;
 const ageCalcInputs = document.querySelectorAll('.age-calc-form__input') as NodeListOf<HTMLInputElement>;
 const ageCalcErrorParagraphs = document.querySelectorAll('.age-calc-form__error') as NodeListOf<HTMLParagraphElement>;
 
 const ageCalcSubmitBtn = document.querySelector('.age-calc-form__submit-btn') as HTMLButtonElement;
 
-const dayError = document.querySelector('.age-calc-form__error[data-error-id="day"') as HTMLParagraphElement;
-const monthError = document.querySelector('.age-calc-form__error[data-error-id="month"') as HTMLParagraphElement;
-const yearError = document.querySelector('.age-calc-form__error[data-error-id="year"') as HTMLParagraphElement;
-
 const currentYear = new Date().getFullYear();
 
-const calcAge = (e: Event) => {
+const calcAge = async (e: Event) => {
 	e.preventDefault();
-	validateForm();
+
+	const validation = await validateForm();
+	if (validation === false) return;
 };
 
 const validateForm = async () => {
-	if (checkIfEmpty() === false) return;
+	if (checkIfEmpty() === false) return false;
 
-	setTimeout(() => {
-		checkIfAccurateValues();
-	}, 300);
+	const timeout = () => {
+		return new Promise(resolve => setTimeout(resolve, 300));
+	};
 
-	// const isAccurate = () => {
-	// 	return new Promise(resolve => {
-	// 		setTimeout(() => {
-	// 			if (checkIfAccurateValues() === false) {
-	// 				return false;
-	// 			} else {
-	// 				return true;
-	// 			}
-	// 		}, 300);
-	// 	});
-	// };
+	const validateValues = async () => {
+		await timeout();
 
-	// const result = await isAccurate();
+		return checkIfAccurateValues();
+	};
 
-	// clearErrors();
+	return await validateValues();
 };
 
 const checkIfEmpty = (): boolean => {
@@ -67,28 +56,29 @@ const checkIfEmpty = (): boolean => {
 		errorToDisplay.classList.add('age-calc-form__error--active-visibility');
 	});
 
-	filledInputs.forEach(input => {
-		removeError(input);
-	});
+	filledInputs.forEach(input => removeError(input));
 
 	return emptyInputs.length === 0 ? true : false;
 };
 
 const checkIfAccurateValues = (): boolean => {
+	const monthsWith31Days: number[] = [1, 3, 5, 7, 8, 10, 12];
 	let day: number;
 	let month: number;
+	let validationsPassed: number = 0;
 
 	ageCalcInputs.forEach(input => {
-		const TimePeriod = input.dataset.id;
+		const timePeriod = input.dataset.id as string;
 		const dayError = Array.from(ageCalcErrorParagraphs).find(
-			error => error.dataset.errorId === TimePeriod,
+			error => error.dataset.errorId === timePeriod,
 		) as HTMLParagraphElement;
 
-		switch (TimePeriod) {
+		switch (timePeriod) {
 			case 'day':
 				day = Number(input.value);
+
 				if (day <= 0) {
-					addDayError();
+					addError('day');
 				}
 
 				break;
@@ -96,45 +86,39 @@ const checkIfAccurateValues = (): boolean => {
 				month = Number(input.value);
 
 				if (month > 12 || month <= 0) {
-					addDayError();
-					addMonthError();
+					addError('day');
+					addError('month');
 					return;
 				} else if (month === 2) {
 					if (day > 28) {
-						addDayError();
+						addError('day');
 						return;
 					}
+
 					removeError('day');
-				} else if (
-					month === 1 ||
-					month === 3 ||
-					month === 5 ||
-					month === 7 ||
-					month === 8 ||
-					month === 10 ||
-					month === 12
-				) {
+				} else if (monthsWith31Days.includes(month)) {
 					if (day > 31) {
-						addDayError();
+						addError('day');
 						return;
 					}
+
 					removeError('day');
 				} else if (month !== 2) {
 					if (day > 30) {
-						addDayError();
+						addError('day');
 						return;
 					}
+
 					removeError('day');
 				}
 
 				removeError('month');
-
 				break;
 			case 'year':
 				const year = Number(input.value);
 
 				if (year >= currentYear) {
-					addYearError();
+					addError('year');
 				} else {
 					removeError('year');
 				}
@@ -142,25 +126,22 @@ const checkIfAccurateValues = (): boolean => {
 				if (year % 4 === 0 && month === 2 && day === 29) {
 					removeError('day');
 				}
+
 				break;
 		}
 	});
 
-	if (dayError.textContent !== '' && monthError.textContent !== '' && yearError.textContent !== '') {
-		return false;
-	} else {
+	ageCalcErrorParagraphs.forEach(error => {
+		if (error.textContent === '') {
+			validationsPassed++;
+		}
+	});
+
+	if (validationsPassed === 3) {
 		return true;
+	} else {
+		return false;
 	}
-};
-
-const clearErrors = () => {
-	ageCalcErrorParagraphs.forEach(p => p.classList.remove('age-calc-form__error--active'));
-
-	setTimeout(() => {
-		ageCalcErrorParagraphs.forEach(p => p.classList.remove('age-calc-form__error--active-visibility'));
-		ageCalcErrorParagraphs.forEach(p => (p.textContent = ''));
-	}, 300);
-	ageCalcForm.classList.remove('age-calc-form--error');
 };
 
 const removeError = (timePeriod: string) => {
@@ -176,22 +157,28 @@ const removeError = (timePeriod: string) => {
 	}, 300);
 };
 
-const addDayError = () => {
-	dayError.textContent = 'Must be a valid day';
-	dayError.classList.add('age-calc-form__error--active');
-	dayError.classList.add('age-calc-form__error--active-visibility');
-};
+const addError = (timePeriod: string) => {
+	const ageCalcForm = document.querySelector('.age-calc-form') as HTMLDivElement;
+	const errorToAdd = document.querySelector(
+		`.age-calc-form__error[data-error-id="${timePeriod}"`,
+	) as HTMLParagraphElement;
 
-const addMonthError = () => {
-	monthError.textContent = 'Must be a valid month';
-	monthError.classList.add('age-calc-form__error--active');
-	monthError.classList.add('age-calc-form__error--active-visibility');
-};
+	ageCalcForm.classList.add('age-calc-form--error');
 
-const addYearError = () => {
-	yearError.textContent = 'Must be in the past';
-	yearError.classList.add('age-calc-form__error--active');
-	yearError.classList.add('age-calc-form__error--active-visibility');
+	switch (timePeriod) {
+		case 'day':
+			errorToAdd.textContent = 'Must be a valid day';
+			break;
+		case 'month':
+			errorToAdd.textContent = 'Must be a valid month';
+			break;
+		case 'year':
+			errorToAdd.textContent = 'Must be in the past';
+			break;
+	}
+
+	errorToAdd.classList.add('age-calc-form__error--active');
+	errorToAdd.classList.add('age-calc-form__error--active-visibility');
 };
 
 ageCalcSubmitBtn.addEventListener('click', calcAge);
