@@ -7,9 +7,11 @@
 .attribution a {
 	color: hsl(228, 45%, 44%);
 	text-decoration: none;
+	outline: none;
 	transition: color 0.3s;
 
-	&:hover {
+	&:hover,
+	&:focus {
 		color: hsl(281, 87%, 35%);
 	}
 }
