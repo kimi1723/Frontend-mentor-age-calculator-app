@@ -10,6 +10,10 @@ const ageCalcSubmitBtn = document.querySelector('.age-calc-form__submit-btn') as
 
 const currentYear: number = new Date().getFullYear();
 
+const timeout = (): Promise<void> => {
+	return new Promise(resolve => setTimeout(resolve, 300));
+};
+
 const calcAge = async (e: Event) => {
 	e.preventDefault();
 
@@ -21,10 +25,6 @@ const calcAge = async (e: Event) => {
 
 const validateForm = async () => {
 	if (checkIfEmpty() === false) return false;
-
-	const timeout = (): Promise<void> => {
-		return new Promise(resolve => setTimeout(resolve, 300));
-	};
 
 	const validateValues = async (): Promise<boolean> => {
 		await timeout();
@@ -118,7 +118,11 @@ const checkIfAccurateValues = () => {
 				}
 
 				if (year % 4 === 0 && month === 2 && day === 29) {
-					removeError('day', 'one');
+					const removeErrorAsync = async (): Promise<void> => {
+						await timeout();
+
+						removeError('day', 'one');
+					};
 				}
 
 				break;
