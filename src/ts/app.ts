@@ -1,9 +1,6 @@
 const ageCalcForm = document.querySelector('.age-calc-form') as HTMLDivElement;
 // const ageCalcLabels = document.querySelectorAll('.age-calc-form__label') as NodeListOf<HTMLLabelElement>;
 
-// const ageCalcDayInput = document.querySelector('.age-calc-form__input[data-id="day"]') as HTMLInputElement;
-// const ageCalcMonthInput = document.querySelector('.age-calc-form__input[data-id="month"]') as HTMLInputElement;
-// const ageCalcYearInput = document.querySelector('.age-calc-form__input[data-id="year"]') as HTMLInputElement;
 const ageCalcInputs = document.querySelectorAll('.age-calc-form__input') as NodeListOf<HTMLInputElement>;
 
 const ageCalcSubmitBtn = document.querySelector('.age-calc-form__submit-btn') as HTMLButtonElement;
@@ -14,13 +11,27 @@ const timeout = (): Promise<void> => {
 	return new Promise(resolve => setTimeout(resolve, 300));
 };
 
-const calcAge = async (e: Event) => {
+const calculateAge = async (e: Event) => {
 	e.preventDefault();
 
 	const validation: boolean = await validateForm();
 
 	if (validation === false) return;
 	ageCalcForm.classList.remove('age-calc-form--error');
+
+	getAge();
+};
+
+const getAge = () => {
+	const dayInput = document.querySelector('.age-calc-form__input[data-id="day"]') as HTMLInputElement;
+	const monthInput = document.querySelector('.age-calc-form__input[data-id="month"]') as HTMLInputElement;
+	const yearInput = document.querySelector('.age-calc-form__input[data-id="year"]') as HTMLInputElement;
+
+	const days = dayInput.value ;
+	const months = monthInput.value;
+	const years = yearInput.value;
+
+	console.log(days);
 };
 
 const validateForm = async () => {
@@ -176,4 +187,4 @@ const addError = (timePeriod: string, id: string) => {
 	errorToAdd.classList.add('age-calc-form__error--active-visibility');
 };
 
-ageCalcSubmitBtn.addEventListener('click', calcAge);
+ageCalcSubmitBtn.addEventListener('click', calculateAge);
