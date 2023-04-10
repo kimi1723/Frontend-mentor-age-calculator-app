@@ -27,12 +27,18 @@ const getAge = () => {
 	const monthInput = document.querySelector('.age-calc-form__input[data-id="month"]') as HTMLInputElement;
 	const yearInput = document.querySelector('.age-calc-form__input[data-id="year"]') as HTMLInputElement;
 
-	const days = dayInput.value ;
-	const months = monthInput.value;
-	const years = yearInput.value;
+	const currentDate: Date = new Date();
+	const providedDate: Date = new Date(`${monthInput.value}/${dayInput.value}/${yearInput.value}`);
+	const dateResult: number = currentDate.valueOf() - providedDate.valueOf();
+
+	const days: number = Math.floor(dateResult / 1000 / 60 / 60 / 24);
+	const months: number = Math.floor(dateResult / 1000 / 60 / 60 / 24 / 30);
+	const years: number = dateResult / 1000 / 60 / 60 / 24 / 30;
 
 	console.log(days);
+	console.log(months);
 };
+getAge();
 
 const validateForm = async () => {
 	if (checkIfEmpty() === false) return false;
