@@ -31,24 +31,33 @@ const getAge = () => {
 	const providedDate: Date = new Date(`${monthInput.value}/${dayInput.value}/${yearInput.value}`);
 	const dateResult: number = currentDate.valueOf() - providedDate.valueOf();
 
-	const months: number = Math.floor((dateResult / 1000 / 60 / 60 / 24 / 30.437) % 12);
+	let days = Math.round((dateResult / 1000 / 60 / 60 / 24) % 365.25);
+	let months: number = Math.floor((dateResult / 1000 / 60 / 60 / 24 / 30.438) % 12);
+	let years: number = Math.floor(dateResult / 1000 / 60 / 60 / 24 / 30 / 12) - 1;
 
-	const years: number = Math.floor(dateResult / 1000 / 60 / 60 / 24 / 30 / 12);
-
-	const days = Math.round((dateResult / 1000 / 60 / 60 / 24) % 365.25);
-
-	console.log(days);
+	let daysToDisplay, monthsToDisplay;
 
 	if (days === 365) {
-		// days = 0;
+		days = 0;
+		months = 0;
 	}
 
+	if (days >= 365) {
+		years += 1;
+	}
+
+	console.log(years);
 	const daysOutput = document.querySelector('.age-calc-output__text--days') as HTMLSpanElement;
 	const daysOutputSpan = document.querySelector(
 		'.age-calc-output__text--days > .age-calc-output__text--highlighted',
 	) as HTMLSpanElement;
 
+	const monthsOutputSpan = document.querySelector(
+		'.age-calc-output__text--months > .age-calc-output__text--highlighted',
+	) as HTMLSpanElement;
+
 	daysOutputSpan.textContent = days.toString();
+	monthsOutputSpan.textContent = months.toString();
 };
 getAge();
 
