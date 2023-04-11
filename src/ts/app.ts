@@ -5,8 +5,6 @@ const ageCalcInputs = document.querySelectorAll('.age-calc-form__input') as Node
 const yearInput = document.querySelector('.age-calc-form__input[data-id="year"]') as HTMLInputElement;
 const ageCalcSubmitBtn = document.querySelector('.age-calc-form__submit-btn') as HTMLButtonElement;
 
-const currentYear: number = new Date().getFullYear();
-
 const timeout = (): Promise<void> => {
 	return new Promise(resolve => setTimeout(resolve, 300));
 };
@@ -30,11 +28,14 @@ const getAge = () => {
 	const providedDate: Date = new Date(`${monthInput.value}/${dayInput.value}/${yearInput.value}`);
 	const dateResult: number = currentDate.valueOf() - providedDate.valueOf();
 
-	let days = Math.floor((dateResult / 1000 / 60 / 60 / 24) % 365.25);
-	let months: number = Math.floor((dateResult / 1000 / 60 / 60 / 24 / 30.437) % 12);
-	let years: number = Math.round(dateResult / 1000 / 60 / 60 / 24 / 365.25 - 1);
+	const outputTemplate = document.querySelector('.age-calc-output-template') as HTMLTemplateElement;
+	const outputHTML = outputTemplate.content.cloneNode(true) as HTMLElement;
+	const outputDiv = document.querySelector('.age-calc-output') as HTMLDivElement;
+	const timestamps: string[] = ['days', 'months', 'years'];
 
-	let daysToDisplay, monthsToDisplay;
+	let days: number | string = Math.round((dateResult / 1000 / 60 / 60 / 24) % 365.25);
+	let months: number | string = Math.floor((dateResult / 1000 / 60 / 60 / 24 / 30.437) % 12);
+	let years: number | string = Math.round(dateResult / 1000 / 60 / 60 / 24 / 365.25 - 1);
 
 	if (
 		(providedDate.getMonth() === currentDate.getMonth() && providedDate.getDate() <= currentDate.getDate()) ||
@@ -43,23 +44,32 @@ const getAge = () => {
 		years += 1;
 	}
 
-	if (days === 365) {
-		(days = 0), (months = 0);
-	}
+	if (days === 365) (days = 0), (months = 0);
 
-	const daysOutput = document.querySelector('.age-calc-output__text--days') as HTMLSpanElement;
-	const daysOutputSpan = document.querySelector(
-		'.age-calc-output__text--days > .age-calc-output__text--highlighted',
-	) as HTMLSpanElement;
+	outputDiv.textContent = '';
+	timestamps.forEach(timestamp => {
+		const timestampOutput = outputHTML.querySelector(`.age-calc-output__text--${timestamp}`) as HTMLParagraphElement;
+		if (isNaN(Number(days)) || isNaN(Number(months)) || isNaN(Number(years)))
+			(days = '--'), (months = '--'), (years = '--');
 
-	const monthsOutputSpan = document.querySelector(
-		'.age-calc-output__text--months > .age-calc-output__text--highlighted',
-	) as HTMLSpanElement;
+		switch (timestamp) {
+			case 'days':
+				if (days === 1) timestamp = timestamp.slice(0, -1);
+				timestampOutput.innerHTML = `<span class="age-calc-output__text--highlighted">${days}</span> ${timestamp}`;
+				break;
+			case 'months':
+				if (months === 1) timestamp = timestamp.slice(0, -1);
+				timestampOutput.innerHTML = `<span class="age-calc-output__text--highlighted">${months}</span> ${timestamp}`;
+				break;
+			case 'years':
+				if (years === 1) timestamp = timestamp.slice(0, -1);
+				timestampOutput.innerHTML = `<span class="age-calc-output__text--highlighted">${years}</span> ${timestamp}`;
+				break;
+		}
 
-	daysOutputSpan.textContent = days.toString();
-	monthsOutputSpan.textContent = months.toString();
+		outputDiv.append(timestampOutput);
+	});
 };
-getAge();
 
 const validateForm = async () => {
 	if (checkIfEmpty() === false) return false;
@@ -150,6 +160,8 @@ const checkIfAccurateValues = () => {
 				removeError('month', 'one');
 				break;
 			case 'year':
+				const currentYear: number = new Date().getFullYear();
+
 				if (year > currentYear) {
 					addError('year', 'notValidated');
 				} else {
@@ -207,4 +219,5 @@ const addError = (timePeriod: string, id: string) => {
 	errorToAdd.classList.add('age-calc-form__error--active-visibility');
 };
 
+getAge();
 ageCalcSubmitBtn.addEventListener('click', calculateAge);
