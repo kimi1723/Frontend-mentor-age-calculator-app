@@ -31,12 +31,24 @@ const getAge = () => {
 	const providedDate: Date = new Date(`${monthInput.value}/${dayInput.value}/${yearInput.value}`);
 	const dateResult: number = currentDate.valueOf() - providedDate.valueOf();
 
-	const days: number = Math.floor(dateResult / 1000 / 60 / 60 / 24);
-	const months: number = Math.floor(dateResult / 1000 / 60 / 60 / 24 / 30);
-	const years: number = dateResult / 1000 / 60 / 60 / 24 / 30;
+	const months: number = Math.floor((dateResult / 1000 / 60 / 60 / 24 / 30.437) % 12);
+
+	const years: number = Math.floor(dateResult / 1000 / 60 / 60 / 24 / 30 / 12);
+
+	const days = Math.round((dateResult / 1000 / 60 / 60 / 24) % 365.25);
 
 	console.log(days);
-	console.log(months);
+
+	if (days === 365) {
+		// days = 0;
+	}
+
+	const daysOutput = document.querySelector('.age-calc-output__text--days') as HTMLSpanElement;
+	const daysOutputSpan = document.querySelector(
+		'.age-calc-output__text--days > .age-calc-output__text--highlighted',
+	) as HTMLSpanElement;
+
+	daysOutputSpan.textContent = days.toString();
 };
 getAge();
 
@@ -128,7 +140,7 @@ const checkIfAccurateValues = () => {
 			case 'year':
 				const year = Number(input.value);
 
-				if (year >= currentYear) {
+				if (year > currentYear) {
 					addError('year', 'notValidated');
 				} else {
 					removeError('year', 'one');
