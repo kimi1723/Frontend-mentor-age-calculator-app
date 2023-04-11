@@ -31,22 +31,25 @@ const getAge = () => {
 	const providedDate: Date = new Date(`${monthInput.value}/${dayInput.value}/${yearInput.value}`);
 	const dateResult: number = currentDate.valueOf() - providedDate.valueOf();
 
-	let days = Math.round((dateResult / 1000 / 60 / 60 / 24) % 365.25);
-	let months: number = Math.floor((dateResult / 1000 / 60 / 60 / 24 / 30.438) % 12);
-	let years: number = Math.floor(dateResult / 1000 / 60 / 60 / 24 / 30 / 12) - 1;
+	let days = Math.ceil((dateResult / 1000 / 60 / 60 / 24) % 365.25);
+	let months: number = Math.floor((dateResult / 1000 / 60 / 60 / 24 / 30.437) % 12);
+	let years: number = Math.round(dateResult / 1000 / 60 / 60 / 24 / 365.25 - 1);
 
 	let daysToDisplay, monthsToDisplay;
 
-	if (days === 365) {
-		days = 0;
-		months = 0;
-	}
-
-	if (days >= 365) {
+	if (
+		(providedDate.getMonth() === currentDate.getMonth() && providedDate.getDate() <= currentDate.getDate()) ||
+		providedDate.getMonth() < currentDate.getMonth()
+	) {
 		years += 1;
 	}
 
 	console.log(years);
+
+	if ((days === 365 && Number(yearInput.value) % 4 !== 0) || (days === 366 && Number(yearInput.value) % 4 === 0)) {
+		(days = 0), (months = 0);
+	}
+
 	const daysOutput = document.querySelector('.age-calc-output__text--days') as HTMLSpanElement;
 	const daysOutputSpan = document.querySelector(
 		'.age-calc-output__text--days > .age-calc-output__text--highlighted',
