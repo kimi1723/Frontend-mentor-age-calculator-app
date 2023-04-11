@@ -2,7 +2,7 @@ const ageCalcForm = document.querySelector('.age-calc-form') as HTMLDivElement;
 // const ageCalcLabels = document.querySelectorAll('.age-calc-form__label') as NodeListOf<HTMLLabelElement>;
 
 const ageCalcInputs = document.querySelectorAll('.age-calc-form__input') as NodeListOf<HTMLInputElement>;
-
+const yearInput = document.querySelector('.age-calc-form__input[data-id="year"]') as HTMLInputElement;
 const ageCalcSubmitBtn = document.querySelector('.age-calc-form__submit-btn') as HTMLButtonElement;
 
 const currentYear: number = new Date().getFullYear();
@@ -25,13 +25,12 @@ const calculateAge = async (e: Event) => {
 const getAge = () => {
 	const dayInput = document.querySelector('.age-calc-form__input[data-id="day"]') as HTMLInputElement;
 	const monthInput = document.querySelector('.age-calc-form__input[data-id="month"]') as HTMLInputElement;
-	const yearInput = document.querySelector('.age-calc-form__input[data-id="year"]') as HTMLInputElement;
 
 	const currentDate: Date = new Date();
 	const providedDate: Date = new Date(`${monthInput.value}/${dayInput.value}/${yearInput.value}`);
 	const dateResult: number = currentDate.valueOf() - providedDate.valueOf();
 
-	let days = Math.ceil((dateResult / 1000 / 60 / 60 / 24) % 365.25);
+	let days = Math.floor((dateResult / 1000 / 60 / 60 / 24) % 365.25);
 	let months: number = Math.floor((dateResult / 1000 / 60 / 60 / 24 / 30.437) % 12);
 	let years: number = Math.round(dateResult / 1000 / 60 / 60 / 24 / 365.25 - 1);
 
@@ -44,9 +43,7 @@ const getAge = () => {
 		years += 1;
 	}
 
-	console.log(years);
-
-	if ((days === 365 && Number(yearInput.value) % 4 !== 0) || (days === 366 && Number(yearInput.value) % 4 === 0)) {
+	if (days === 365) {
 		(days = 0), (months = 0);
 	}
 
@@ -99,9 +96,12 @@ const checkIfEmpty = (): boolean => {
 const checkIfAccurateValues = () => {
 	const ageCalcErrorParagraphs = document.querySelectorAll('.age-calc-form__error') as NodeListOf<HTMLParagraphElement>;
 	const monthsWith31Days: number[] = [1, 3, 5, 7, 8, 10, 12];
-	let day: number;
-	let month: number;
-	let validationsPassed: number = 0;
+
+	const year = Number(yearInput.value);
+
+	let day: number,
+		month: number,
+		validationsPassed: number = 0;
 
 	ageCalcInputs.forEach(input => {
 		const timePeriod = input.dataset.id as string;
@@ -125,7 +125,7 @@ const checkIfAccurateValues = () => {
 					addError('month', 'notValidated');
 					return;
 				} else if (month === 2) {
-					if (day > 28) {
+					if (day > 28 && year % 4 !== 0) {
 						addError('day', 'notValidated');
 						return;
 					}
@@ -150,20 +150,10 @@ const checkIfAccurateValues = () => {
 				removeError('month', 'one');
 				break;
 			case 'year':
-				const year = Number(input.value);
-
 				if (year > currentYear) {
 					addError('year', 'notValidated');
 				} else {
 					removeError('year', 'one');
-				}
-
-				if (year % 4 === 0 && month === 2 && day === 29) {
-					const removeErrorAsync = async (): Promise<void> => {
-						await timeout();
-
-						removeError('day', 'one');
-					};
 				}
 
 				break;
