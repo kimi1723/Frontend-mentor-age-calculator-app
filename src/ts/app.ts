@@ -7,6 +7,8 @@ const ageCalcSubmitBtn = document.querySelector('.age-calc-form__submit-btn') as
 
 const currentDate: Date = new Date();
 
+let i: number = 0;
+
 const timeout = (): Promise<void> => {
 	return new Promise(resolve => setTimeout(resolve, 300));
 };
@@ -18,7 +20,7 @@ const calculateAge = async (e: Event) => {
 
 	if (validation === false) return;
 	ageCalcForm.classList.remove('age-calc-form--error');
-
+	i = 0;
 	getAge();
 };
 
@@ -56,7 +58,9 @@ const getAge = () => {
 		switch (timestamp) {
 			case 'days':
 				if (days === 1) timestamp = timestamp.slice(0, -1);
-				timestampOutput.innerHTML = `<span class="age-calc-output__text--highlighted">${days}</span> ${timestamp}`;
+				timestampOutput.innerHTML = `<span class="age-calc-output__text--highlighted">0</span> ${timestamp}`;
+
+				outputDiv.append(timestampOutput);
 				break;
 			case 'months':
 				if (months === 1) timestamp = timestamp.slice(0, -1);
@@ -69,7 +73,24 @@ const getAge = () => {
 		}
 
 		outputDiv.append(timestampOutput);
+		updateForm(Number(days));
 	});
+};
+
+let initialValue: number = 0;
+
+const updateForm = (value2: number) => {
+	if (i === 0) (initialValue = value2), i++;
+
+	const ts = document.querySelector('.age-calc-output__text--highlighted') as HTMLSpanElement;
+	const speed = Number(initialValue / 185);
+	const valueT = document.querySelector('.age-calc-output__text--highlighted') as HTMLSpanElement;
+
+	let value = Number(valueT.textContent);
+	if (value < initialValue) {
+		ts.textContent = Math.floor((value += speed)).toString();
+		setTimeout(updateForm, 1);
+	}
 };
 
 const validateForm = async () => {
