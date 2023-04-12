@@ -5,6 +5,8 @@ const ageCalcInputs = document.querySelectorAll('.age-calc-form__input') as Node
 const yearInput = document.querySelector('.age-calc-form__input[data-id="year"]') as HTMLInputElement;
 const ageCalcSubmitBtn = document.querySelector('.age-calc-form__submit-btn') as HTMLButtonElement;
 
+const currentDate: Date = new Date();
+
 const timeout = (): Promise<void> => {
 	return new Promise(resolve => setTimeout(resolve, 300));
 };
@@ -24,7 +26,6 @@ const getAge = () => {
 	const dayInput = document.querySelector('.age-calc-form__input[data-id="day"]') as HTMLInputElement;
 	const monthInput = document.querySelector('.age-calc-form__input[data-id="month"]') as HTMLInputElement;
 
-	const currentDate: Date = new Date();
 	const providedDate: Date = new Date(`${monthInput.value}/${dayInput.value}/${yearInput.value}`);
 	const dateResult: number = currentDate.valueOf() - providedDate.valueOf();
 
@@ -160,14 +161,18 @@ const checkIfAccurateValues = () => {
 				removeError('month', 'one');
 				break;
 			case 'year':
-				const currentYear: number = new Date().getFullYear();
+				const currentYear: number = currentDate.getFullYear();
 
 				if (year > currentYear) {
+					addError('year', 'notValidated');
+				} else if (
+					(year === currentYear && day > currentDate.getDate()) ||
+					(year === currentYear && month - 1 > currentDate.getMonth())
+				) {
 					addError('year', 'notValidated');
 				} else {
 					removeError('year', 'one');
 				}
-
 				break;
 		}
 	});
