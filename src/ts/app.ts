@@ -58,7 +58,7 @@ const getAge = () => {
 		switch (timestamp) {
 			case 'days':
 				if (days === 1) timestamp = timestamp.slice(0, -1);
-				timestampOutput.innerHTML = `<span class="age-calc-output__text--highlighted">0</span> ${timestamp}`;
+				timestampOutput.innerHTML = `<span class="age-calc-output__text--highlighted">${days}</span> ${timestamp}`;
 
 				outputDiv.append(timestampOutput);
 				break;
@@ -77,19 +77,21 @@ const getAge = () => {
 	});
 };
 
-let initialValue: number = 0;
-
 const updateForm = (value2: number) => {
-	if (i === 0) (initialValue = value2), i++;
+	if (isNaN(value2)) return;
 
 	const ts = document.querySelector('.age-calc-output__text--highlighted') as HTMLSpanElement;
-	const speed = Number(initialValue / 185);
-	const valueT = document.querySelector('.age-calc-output__text--highlighted') as HTMLSpanElement;
+	let value: number = 0;
+	const valueDividingNumber: number = 15;
+	const speed = value2 / valueDividingNumber;
 
-	let value = Number(valueT.textContent);
-	if (value < initialValue) {
-		ts.textContent = Math.floor((value += speed)).toString();
-		setTimeout(updateForm, 1);
+	let toTime: number = 0;
+	for (let i = 0; i < valueDividingNumber; i++) {
+		toTime += 30;
+
+		setTimeout(() => {
+			ts.textContent = Math.round((value += speed)).toString();
+		}, toTime);
 	}
 };
 
