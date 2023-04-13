@@ -60,7 +60,6 @@ const getAge = () => {
 				if (days === 1) timestamp = timestamp.slice(0, -1);
 				timestampOutput.innerHTML = `<span class="age-calc-output__text--highlighted">0</span> ${timestamp}`;
 
-				outputDiv.append(timestampOutput);
 				break;
 			case 'months':
 				if (months === 1) timestamp = timestamp.slice(0, -1);
@@ -73,14 +72,20 @@ const getAge = () => {
 		}
 
 		outputDiv.append(timestampOutput);
-		updateForm(Number(days));
 	});
+
+	updateOutput(Number(days), 'days');
+	updateOutput(Number(months), 'months');
+	updateOutput(Number(years), 'years');
 };
 
-const updateForm = (targetValue: number) => {
+const updateOutput = (targetValue: number, timestamp: string) => {
 	if (isNaN(targetValue)) return;
 
-	const textOutput = document.querySelector('.age-calc-output__text--highlighted') as HTMLSpanElement;
+	const textOutput = document.querySelector(
+		`.age-calc-output__text--${timestamp} > .age-calc-output__text--highlighted`,
+	) as HTMLSpanElement;
+
 	const targetValueDivingNumber: number = 15;
 	const speed: number = targetValue / targetValueDivingNumber;
 
