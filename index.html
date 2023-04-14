@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Age calculator app challange from Frontend Mentor coded by Patryk Sąsiadek.">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
 
   <title>Frontend Mentor | Age calculator app by Patryk Sąsiadek</title>
@@ -15,6 +16,8 @@
 </head>
 
 <body>
+  <h1 class="sr-only">Age calculator app</h1>
+
   <main class="age-calc">
     <form class="age-calc-form">
       <label for="day" class="age-calc-form__label">Day</label>
@@ -29,8 +32,8 @@
       <input id="year" type="number" class="age-calc-form__input" placeholder="YYYY" data-id="year">
       <p class="age-calc-form__error" data-error-id="year"></p>
 
-      <button type="submit" class="age-calc-form__submit-btn"><img src="./assets/images/icon-arrow.svg" alt=""
-          class="age-calc-form__submit-btn-img"></button>
+      <button type="submit" class="age-calc-form__submit-btn" aria-label="Calculate"><img
+          src="./assets/images/icon-arrow.svg" alt="" class="age-calc-form__submit-btn-img"></button>
     </form>
 
 
