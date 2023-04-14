@@ -5,8 +5,6 @@ const ageCalcSubmitBtn = document.querySelector('.age-calc-form__submit-btn') as
 
 const currentDate: Date = new Date();
 
-let i: number = 0;
-
 const timeout = (): Promise<void> => {
 	return new Promise(resolve => setTimeout(resolve, 300));
 };
@@ -18,7 +16,7 @@ const calculateAge = async (e: Event) => {
 
 	if (validation === false) return;
 	ageCalcForm.classList.remove('age-calc-form--error');
-	i = 0;
+
 	getAge();
 };
 
