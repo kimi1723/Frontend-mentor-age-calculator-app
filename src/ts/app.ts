@@ -24,21 +24,18 @@ const calculateAge = async (e: Event) => {
 	getAge();
 };
 
-const getAge = () => {
+const getAge = (): void => {
 	const dayInput = document.querySelector('.age-calc-form__input[data-id="day"]') as HTMLInputElement;
 	const monthInput = document.querySelector('.age-calc-form__input[data-id="month"]') as HTMLInputElement;
-
 	const providedDate: Date = new Date(`${monthInput.value}/${dayInput.value}/${yearInput.value}`);
 	const dateResult: number = currentDate.valueOf() - providedDate.valueOf();
-
-	const outputTemplate = document.querySelector('.age-calc-output-template') as HTMLTemplateElement;
-	const outputHTML = outputTemplate.content.cloneNode(true) as HTMLElement;
-	const outputDiv = document.querySelector('.age-calc-output') as HTMLDivElement;
 	const timestamps: string[] = ['days', 'months', 'years'];
 
-	let days: number | string = Math.round((dateResult / 1000 / 60 / 60 / 24) % 365.25);
-	let months: number | string = Math.floor((dateResult / 1000 / 60 / 60 / 24 / 30.437) % 12);
-	let years: number | string = Math.round(dateResult / 1000 / 60 / 60 / 24 / 365.25 - 1);
+	const outputDiv = document.querySelector('.age-calc-output') as HTMLDivElement;
+
+	let days: number | string = Math.round((dateResult / 1000 / 60 / 60 / 24) % 365.25),
+		months: number | string = Math.floor((dateResult / 1000 / 60 / 60 / 24 / 30.437) % 12),
+		years: number | string = Math.round(dateResult / 1000 / 60 / 60 / 24 / 365.25 - 1);
 
 	if (
 		(providedDate.getMonth() === currentDate.getMonth() && providedDate.getDate() <= currentDate.getDate()) ||
@@ -50,55 +47,62 @@ const getAge = () => {
 	if (days === 365) (days = 0), (months = 0);
 
 	outputDiv.textContent = '';
+
 	timestamps.forEach(timestamp => {
-		const timestampOutput = outputHTML.querySelector(`.age-calc-output__text--${timestamp}`) as HTMLParagraphElement;
 		if (isNaN(Number(days)) || isNaN(Number(months)) || isNaN(Number(years)))
 			(days = '--'), (months = '--'), (years = '--');
 
 		switch (timestamp) {
 			case 'days':
 				if (days === 1) timestamp = timestamp.slice(0, -1);
-				timestampOutput.innerHTML = `<span class="age-calc-output__text--highlighted">0</span> ${timestamp}`;
+				updateOutput(Number(days), timestamp);
 
 				break;
 			case 'months':
 				if (months === 1) timestamp = timestamp.slice(0, -1);
-				timestampOutput.innerHTML = `<span class="age-calc-output__text--highlighted">${months}</span> ${timestamp}`;
+				updateOutput(Number(months), 'months');
+
 				break;
 			case 'years':
 				if (years === 1) timestamp = timestamp.slice(0, -1);
-				timestampOutput.innerHTML = `<span class="age-calc-output__text--highlighted">${years}</span> ${timestamp}`;
+				updateOutput(Number(years), 'years');
+
 				break;
 		}
-
-		outputDiv.append(timestampOutput);
 	});
-
-	updateOutput(Number(days), 'days');
-	updateOutput(Number(months), 'months');
-	updateOutput(Number(years), 'years');
 };
 
-const updateOutput = (targetValue: number, timestamp: string) => {
-	if (isNaN(targetValue)) return;
+const updateOutput = (targetValue: number | string, timestamp: string): void => {
+	if (isNaN(Number(targetValue))) targetValue = '--';
 
-	const textOutput = document.querySelector(
-		`.age-calc-output__text--${timestamp} > .age-calc-output__text--highlighted`,
-	) as HTMLSpanElement;
+	const outputTemplate = document.querySelector('.age-calc-output-template') as HTMLTemplateElement;
+	const outputHTML = outputTemplate.content.cloneNode(true) as HTMLElement;
+	const outputDiv = document.querySelector('.age-calc-output') as HTMLDivElement;
+	const textOutput = outputHTML.querySelector(`.age-calc-output__text--${timestamp}`) as HTMLParagraphElement;
+	const timestampOutput = textOutput.querySelector(`span[data-timestamp="${timestamp}"]`) as HTMLSpanElement;
+	const outputNumericalValue = textOutput.querySelector(`.age-calc-output__text--highlighted`) as HTMLSpanElement;
 
-	const targetValueDivingNumber: number = 15;
-	const speed: number = targetValue / targetValueDivingNumber;
+	timestampOutput.innerHTML = `${timestamp}`;
 
-	let value: number = 0,
-		timeoutTime: number = 0;
+	if (targetValue !== '--') {
+		const targetValueDivingNumber: number = 15;
+		const speed: number = Number(targetValue) / targetValueDivingNumber;
 
-	for (let i = 0; i < targetValueDivingNumber; i++) {
-		timeoutTime += 30;
+		let value: number = 0,
+			timeoutTime: number = 0;
 
-		setTimeout(() => {
-			textOutput.textContent = Math.round((value += speed)).toString();
-		}, timeoutTime);
+		for (let i = 0; i < targetValueDivingNumber; i++) {
+			timeoutTime += 30;
+
+			setTimeout(() => {
+				outputNumericalValue.textContent = Math.round((value += speed)).toString();
+			}, timeoutTime);
+		}
+	} else {
+		outputNumericalValue.textContent = targetValue;
 	}
+
+	outputDiv.append(textOutput);
 };
 
 const validateForm = async () => {
