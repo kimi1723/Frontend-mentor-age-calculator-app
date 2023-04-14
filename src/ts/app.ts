@@ -9,7 +9,7 @@ const timeout = (): Promise<void> => {
 	return new Promise(resolve => setTimeout(resolve, 300));
 };
 
-const calculateAge = async (e: Event) => {
+const calculateAge = async (e: Event): Promise<void> => {
 	e.preventDefault();
 
 	const validation: boolean = await validateForm();
@@ -18,45 +18,6 @@ const calculateAge = async (e: Event) => {
 	ageCalcForm.classList.remove('age-calc-form--error');
 
 	getAge();
-};
-
-const getAge = (): void => {
-	const dayInput = document.querySelector('.age-calc-form__input[data-id="day"]') as HTMLInputElement;
-	const monthInput = document.querySelector('.age-calc-form__input[data-id="month"]') as HTMLInputElement;
-	const providedDate: Date = new Date(`${monthInput.value}/${dayInput.value}/${yearInput.value}`);
-	const dateResult: number = currentDate.valueOf() - providedDate.valueOf();
-	const timestamps: string[] = ['days', 'months', 'years'];
-
-	const outputDiv = document.querySelector('.age-calc-output') as HTMLDivElement;
-
-	let days: number | string = Math.floor((dateResult / 1000 / 60 / 60 / 24) % 365.25),
-		months: number | string = Math.floor((dateResult / 1000 / 60 / 60 / 24 / 30.437) % 12),
-		years: number | string = Math.round(dateResult / 1000 / 60 / 60 / 24 / 365.25 - 1);
-
-	if (
-		(providedDate.getMonth() === currentDate.getMonth() && providedDate.getDate() <= currentDate.getDate()) ||
-		providedDate.getMonth() < currentDate.getMonth()
-	) {
-		years += 1;
-	}
-
-	if (days === 365) (days = 0), (months = 0);
-
-	outputDiv.textContent = '';
-
-	timestamps.forEach(timestamp => {
-		switch (timestamp) {
-			case 'days':
-				updateOutput(Number(days), timestamp);
-				break;
-			case 'months':
-				updateOutput(Number(months), 'months');
-				break;
-			case 'years':
-				updateOutput(Number(years), 'years');
-				break;
-		}
-	});
 };
 
 const updateOutput = (targetValue: number | string, timestamp: string): void => {
@@ -94,7 +55,7 @@ const updateOutput = (targetValue: number | string, timestamp: string): void => 
 	outputDiv.append(textOutput);
 };
 
-const validateForm = async () => {
+const validateForm = async (): Promise<boolean> => {
 	if (checkIfEmpty() === false) return false;
 
 	const validateValues = async (): Promise<boolean> => {
@@ -126,7 +87,7 @@ const checkIfEmpty = (): boolean => {
 	return emptyInputs.length === 0 ? true : false;
 };
 
-const checkIfAccurateValues = () => {
+const checkIfAccurateValues = (): boolean => {
 	const ageCalcErrorParagraphs = document.querySelectorAll('.age-calc-form__error') as NodeListOf<HTMLParagraphElement>;
 	const monthsWith31Days: number[] = [1, 3, 5, 7, 8, 10, 12];
 
@@ -138,9 +99,6 @@ const checkIfAccurateValues = () => {
 
 	ageCalcInputs.forEach(input => {
 		const timePeriod = input.dataset.id as string;
-		const dayError = Array.from(ageCalcErrorParagraphs).find(
-			error => error.dataset.errorId === timePeriod,
-		) as HTMLParagraphElement;
 
 		switch (timePeriod) {
 			case 'day':
@@ -204,7 +162,46 @@ const checkIfAccurateValues = () => {
 	return validationsPassed === 3 ? true : false;
 };
 
-const removeError = (timePeriod: string, howMany: string) => {
+const getAge = (): void => {
+	const dayInput = document.querySelector('.age-calc-form__input[data-id="day"]') as HTMLInputElement;
+	const monthInput = document.querySelector('.age-calc-form__input[data-id="month"]') as HTMLInputElement;
+	const providedDate: Date = new Date(`${monthInput.value}/${dayInput.value}/${yearInput.value}`);
+	const dateResult: number = currentDate.valueOf() - providedDate.valueOf();
+	const timestamps: string[] = ['days', 'months', 'years'];
+
+	const outputDiv = document.querySelector('.age-calc-output') as HTMLDivElement;
+
+	let days: number | string = Math.floor((dateResult / 1000 / 60 / 60 / 24) % 365.25),
+		months: number | string = Math.floor((dateResult / 1000 / 60 / 60 / 24 / 30.437) % 12),
+		years: number | string = Math.round(dateResult / 1000 / 60 / 60 / 24 / 365.25 - 1);
+
+	if (
+		(providedDate.getMonth() === currentDate.getMonth() && providedDate.getDate() <= currentDate.getDate()) ||
+		providedDate.getMonth() < currentDate.getMonth()
+	) {
+		years += 1;
+	}
+
+	if (days === 365) (days = 0), (months = 0);
+
+	outputDiv.textContent = '';
+
+	timestamps.forEach(timestamp => {
+		switch (timestamp) {
+			case 'days':
+				updateOutput(Number(days), timestamp);
+				break;
+			case 'months':
+				updateOutput(Number(months), 'months');
+				break;
+			case 'years':
+				updateOutput(Number(years), 'years');
+				break;
+		}
+	});
+};
+
+const removeError = (timePeriod: string, howMany: string): void => {
 	if (howMany === 'all') ageCalcForm.classList.remove('age-calc-form--error');
 
 	const errorToRemove = document.querySelector(
@@ -219,7 +216,7 @@ const removeError = (timePeriod: string, howMany: string) => {
 	}, 300);
 };
 
-const addError = (timePeriod: string, id: string) => {
+const addError = (timePeriod: string, id: string): void => {
 	const errorToAdd = document.querySelector(
 		`.age-calc-form__error[data-error-id="${timePeriod}"`,
 	) as HTMLParagraphElement;
@@ -247,4 +244,5 @@ const addError = (timePeriod: string, id: string) => {
 };
 
 getAge();
+
 ageCalcSubmitBtn.addEventListener('click', calculateAge);
