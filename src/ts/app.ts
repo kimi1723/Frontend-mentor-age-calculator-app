@@ -1,6 +1,4 @@
 const ageCalcForm = document.querySelector('.age-calc-form') as HTMLDivElement;
-// const ageCalcLabels = document.querySelectorAll('.age-calc-form__label') as NodeListOf<HTMLLabelElement>;
-
 const ageCalcInputs = document.querySelectorAll('.age-calc-form__input') as NodeListOf<HTMLInputElement>;
 const yearInput = document.querySelector('.age-calc-form__input[data-id="year"]') as HTMLInputElement;
 const ageCalcSubmitBtn = document.querySelector('.age-calc-form__submit-btn') as HTMLButtonElement;
@@ -33,7 +31,7 @@ const getAge = (): void => {
 
 	const outputDiv = document.querySelector('.age-calc-output') as HTMLDivElement;
 
-	let days: number | string = Math.round((dateResult / 1000 / 60 / 60 / 24) % 365.25),
+	let days: number | string = Math.floor((dateResult / 1000 / 60 / 60 / 24) % 365.25),
 		months: number | string = Math.floor((dateResult / 1000 / 60 / 60 / 24 / 30.437) % 12),
 		years: number | string = Math.round(dateResult / 1000 / 60 / 60 / 24 / 365.25 - 1);
 
@@ -49,24 +47,15 @@ const getAge = (): void => {
 	outputDiv.textContent = '';
 
 	timestamps.forEach(timestamp => {
-		if (isNaN(Number(days)) || isNaN(Number(months)) || isNaN(Number(years)))
-			(days = '--'), (months = '--'), (years = '--');
-
 		switch (timestamp) {
 			case 'days':
-				if (days === 1) timestamp = timestamp.slice(0, -1);
 				updateOutput(Number(days), timestamp);
-
 				break;
 			case 'months':
-				if (months === 1) timestamp = timestamp.slice(0, -1);
 				updateOutput(Number(months), 'months');
-
 				break;
 			case 'years':
-				if (years === 1) timestamp = timestamp.slice(0, -1);
 				updateOutput(Number(years), 'years');
-
 				break;
 		}
 	});
@@ -81,6 +70,8 @@ const updateOutput = (targetValue: number | string, timestamp: string): void => 
 	const textOutput = outputHTML.querySelector(`.age-calc-output__text--${timestamp}`) as HTMLParagraphElement;
 	const timestampOutput = textOutput.querySelector(`span[data-timestamp="${timestamp}"]`) as HTMLSpanElement;
 	const outputNumericalValue = textOutput.querySelector(`.age-calc-output__text--highlighted`) as HTMLSpanElement;
+
+	if (targetValue === 1) timestamp = timestamp.slice(0, -1);
 
 	timestampOutput.innerHTML = `${timestamp}`;
 
